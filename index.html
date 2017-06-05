@@ -21,7 +21,7 @@
               Telonor@localhost:~
             </h1>
             <ul class="menu">
-              <li><a href="assets/files/CV.docx" download>Download CV</a></li>
+              <li><a href="assets/files/CV.odt" download>Download CV</a></li>
               <li><button data-open="contactModal">Contact me</button></li>
             </ul>
           </div>
@@ -40,10 +40,10 @@
             </div>
             <div class="nfo">
               <div>
-                <span class="category">Age:</span> 27
+                <span class="category">Age:</span> <span id="age"></span>
               </div>
               <div>
-                <span class="category">City:</span> Kryvyi Rih, Dnipropetrovs'ka oblast’, Ukraine
+                <span class="category">City:</span> Lviv, Ukraine
               </div>
               <div>
                 <span class="category">Family status:</span> Married
@@ -65,6 +65,15 @@
             <div class="row nfo-group">
               <div class="small-12 medium-3 columns category">Experience:</div>
               <div class="small-12 medium-9 columns">
+                  <div class="dt">08.2016 - current time</div>
+                  Synergy Way
+                  <div>
+                    Full Stack Python developer
+                  </div>
+                  <div>
+                    Backend and frontend development.
+                  </div>
+
                   <div class="dt">08.2014 - 07.2016</div>
                   Outsource social network development
                   <div>
@@ -73,6 +82,7 @@
                   <div>
                     Backend and frontend development.
                   </div>
+
                   <div class="dt">2012 -  08.2014</div>
                   сode.ua
                   <div>Django/Python developer</div>
@@ -89,15 +99,19 @@
             <div class="row nfo-group">
               <div class="small-12 medium-3 columns category">Skills:</div>
               <div class="small-12 medium-9 columns">
-                Python 2.7  with Django framework (1.6+),  MySQL, PostgreSQL, JavaScript with jQuery, Bootstrap (2,3),
-                Skeleton, Foundation 6, SCSS, Less, VCS: Git, Mercurial. OS Linux (Fedora).
+                <b>Back End</b>: Python 2.7  with Django framework (1.4, 1.6-1.10), Flask, SQLAlchemy, MySQL, PostgreSQL.
+                <b>Front End</b>: JavaScript include new ES features, jQuery, Bootstrap (2,3), Skeleton, Foundation 6, SCSS, Less.
+                <b>VCS</b>: Git, Mercurial.
+                <b>OS</b>: Linux (Fedora).
               </div>
             </div>
             <div class="row nfo-group">
               <div class="small-12 medium-3 columns category">Training:</div>
               <div class="small-12 medium-9 columns">
+                <div class="dt">current time</div>
+                <a href="https://www.codewars.com/users/Telonor" target="_blank">https://www.codewars.com/</a> - Python
                 <div class="dt">2016</div>
-                <a href="https://htmlacademy.ru/profile/id178876" target="_blank">https://htmlacademy.ru</a> - HTML5/CSS3/LESS courses.
+                <a href="https://htmlacademy.ru/profile/id178876" target="_blank">https://htmlacademy.ru</a> - HTML5/CSS3/LESS courses
                 <div class="dt">2014</div>
                 <a href="https://www.codecademy.com/Telonor" target="_blank">https://www.codecademy.com</a> - Python
                 <div class="dt">2006 - 2011</div>
@@ -163,4 +177,6 @@
     </footer>
 
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/index.js"></script>
+  </body>
 </html>
