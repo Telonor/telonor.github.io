@@ -1,0 +1,22 @@
+{
+  "name": "telonor.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Telonor/telonor.github.io.git"
+  },
+  "author": "Anton Viievskyi (Telonor)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Telonor/telonor.github.io/issues"
+  },
+  "homepage": "https://github.com/Telonor/telonor.github.io#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
