@@ -1,22 +1,15 @@
 {
   "name": "telonor.github.io",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "Personal web page.",
   "main": "index.html",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Telonor/telonor.github.io.git"
-  },
-  "author": "Anton Viievskyi (Telonor)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Telonor/telonor.github.io/issues"
-  },
-  "homepage": "https://github.com/Telonor/telonor.github.io#readme",
+  "repository": "git@github.com:Telonor/telonor.github.io.git",
+  "author": "Telonor (Anton Viievskyi) <viievskyi.anton@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0"
   }
 }
