@@ -72,29 +72,42 @@ module.exports = __webpack_require__(1);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bar__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__styles_style_scss__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__styles_style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__styles_style_scss__);
-// import * as jsPDF from 'jspdf';
 
-// import styles to script. what a wonderful time.
 
+var _bar = __webpack_require__(2);
+
+var _bar2 = _interopRequireDefault(_bar);
+
+var _style = __webpack_require__(3);
+
+var _style2 = _interopRequireDefault(_style);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // for test purposes
-Object(__WEBPACK_IMPORTED_MODULE_0__bar__["a" /* default */])();
+// import * as jsPDF from 'jspdf';
+(0, _bar2.default)();
+// import styles to script. what a wonderful time.
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = bar;
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = bar;
 function bar() {
-  console.log('bundle compiled.');
+  var arr = [1, 2, 3, 4, 5];
+  arr.map(function (x) {
+    return console.log(x);
+  });
 }
 
 /***/ }),

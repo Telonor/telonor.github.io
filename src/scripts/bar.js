@@ -1,3 +1,4 @@
 export default function bar() {
-  console.log('bundle compiled.');
+  let arr = [1, 2, 3, 4 ,5];
+  arr.map(x => console.log(x));
 }
