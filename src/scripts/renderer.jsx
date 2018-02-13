@@ -1,15 +1,14 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
+
+import cvData from './cv_data';
 
 const root = document.getElementById('root');
+const skills = cvData['skills'];
 
 export default function render() {
-    ReactDom.render(
-        React.createElement(
-            'div',
-            {'className': 'alert alert-primary'},
-            'Hello react.'
-        ),
-        root
-    )
+    ReactDOM.render(
+        <ul>{skills.map((skill) => <li key={skill}>{skill}</li>)}</ul>,
+      document.getElementById('root')
+    );
 }
