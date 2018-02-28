@@ -6,12 +6,19 @@
 body {
   line-height: 1.5;
   font-weight: 400;
-  color: white;
   font-family: Roboto Mono,monospace;
+  color: #dcdcdc;
   text-shadow: 1px 1px #000;
-  background: #000;
+  background: #762c67;
 }
 
 header {
   text-align: center;
+  background: #424b4b;
+  background: -webkit-gradient(left top,left bottom,color-stop(0,#424b4b),color-stop(50%,#393f3f),color-stop(100%,#424c4b));
+  background: linear-gradient(180deg,#424b4b 0,#393f3f 50%,#424c4b);
+}
+
+.terminal-body {
+  background: #000;
 }
