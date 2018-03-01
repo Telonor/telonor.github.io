@@ -12,17 +12,23 @@ const skills = cvData['skills'];
 
 class Container extends React.Component {
     render() {
-        return <div className="container">
-            <Header nickname={cvData['basic_info']['nickname']}/>
-            <Body cvData={cvData}/>
-            <Footer nickname={cvData['basic_info']['nickname']} timestamp={cvData['timestamp']}/>
-        </div>
+        return (
+            <div className="container">
+                <Header nickname={cvData['basic_info']['nickname']}/>
+                <Body cvData={cvData}/>
+                <Footer nickname={cvData['basic_info']['nickname']} timestamp={cvData['timestamp']}/>
+            </div>
+        )
     }
 }
 
 export default function render() {
+    // set page title based on cvData
+    document.title = cvData['basic_info']['fio'];
+
+    // render page
     ReactDOM.render(
         <Container/>,
-      document.getElementById('root')
+        document.getElementById('root')
     );
 }
