@@ -22,25 +22,37 @@ export default {
             name: 'GlobalLogic',
             date: '07.2017 - present',
             position: 'Python Software Engineer',
-            responsibility: 'Designing, developing and testing framework for AQA.'
+            responsibility: 'Design, develop, update and fix modules based on tech requirements and requests from QA team',
+            description: 'AQA Framework for the testing product for one of the most known communicational company',
+            technologies: 'Python, pytest, Selenium, Javascript'
         },
         {
             name: 'Synergy Way',
             date: '08.2016 - 07-2017',
-            position: 'Full Stack Python developer',
-            responsibility: 'Backend and frontend development.'
+            position: 'Python Full Stack Software Engineer',
+            description: 'A browser-based, user interface into the powerful Dispatch system. The product is ideal for distributed ' +
+                'call center operations and allows primary functions including call taking and dispatching, vehicle' +
+                'tracking and account/driver/vehicle administration',
+            responsibility: 'Design, develop, update and fix product features and modules based on technical requirements using ' +
+                'technologies listed below',
+            technologies: 'Python, Django, Flask, Mysql, Tornado, Websockets, JavaScript, JQuery, HTML, CSS'
         },
         {
             name: 'Outsource social network development',
             date: '08.2014 - 07.2016',
-            position: 'Django/Python developer',
-            responsibility: 'Backend and frontend development.'
+            position: 'Python Full Stack Software Engineer',
+            description: 'Local startup of the e-commerce oriented social network based on python with Django',
+            responsibility: 'Design, develop new modules of the system as well as update and fix existing modules',
+            technologies: 'Python, Django, PostgreSQL, HTML5, CSS3, Javascript, jQuery'
         },
         {
             name: 'сode.ua',
             date: '2012 - 08.2014',
-            position: 'Django/Python developer',
-            responsibility: 'Backend and frontend development'
+            position: 'Python Full Stack Software Engineer',
+            description: 'Several small, low loaded websites, like landings, internet shops',
+            responsibility: 'HTML markup using HTML 5 and CSS3 commonly using bootstrap(2,3). Adaptation of this markup to ' +
+                'inner CMS. Updating and fixing existing inner CMS.',
+            technologies: 'Python, Django, MySQL, HTML, CSS, JavaScript, jQuery'
         }
     ],
     skills: {
@@ -74,13 +86,13 @@ export default {
     },
     languages: [
         'English: Intermediate',
-        'Ukrainian, Russian: native'
+        'Ukrainian, Russian: Native'
     ],
     trainings: [
         {
-            name: 'https://www.codewars.com/',
+            name: 'https://www.codewars.com',
             url: 'https://www.codewars.com/users/Telonor',
-            target: 'python',
+            target: 'Python',
             date: 'current time'
         },
         {
@@ -92,7 +104,7 @@ export default {
         {
             name: 'https://www.codecademy.com',
             url: 'https://www.codecademy.com/Telonor',
-            target: 'python',
+            target: 'Python',
             date: '2014'
         },
         {

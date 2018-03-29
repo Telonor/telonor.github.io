@@ -3,6 +3,20 @@
 
 
 // our styles
+figure {
+  margin-bottom: 0;
+  padding-bottom: 1rem;
+}
+
+ul {
+  margin-bottom: 0;
+  padding-left: 1rem;
+}
+
+html {
+  font-size: 95%;
+}
+
 body {
   line-height: 1.5;
   font-weight: 400;
@@ -13,12 +27,125 @@ body {
 }
 
 header {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+
   text-align: center;
   background: #424b4b;
   background: -webkit-gradient(left top,left bottom,color-stop(0,#424b4b),color-stop(50%,#393f3f),color-stop(100%,#424c4b));
   background: linear-gradient(180deg,#424b4b 0,#393f3f 50%,#424c4b);
+
+  h1 {
+    margin-bottom: 0;
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+
+    color: #fff;
+    font-size: inherit;
+    font-weight: bold;
+  }
+
+  button.btn-link {
+    padding-left: .5rem;
+    padding-right: .5rem;
+    color: white;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+main {
+  padding-top: 1rem;
+}
+
+@media (min-width: 576px) {
+  #experience {
+    [class^="col-"] {
+      order: 3;
+    }
+
+    .company-name {
+      order: 1;
+    }
+    .date {
+      order: 2
+    }
+  }
+}
+
+.exp-block {
+  margin-bottom: 1rem;
+}
+
+.description, .technologies {
+  color: gray;
+}
+
+
+.terminal {
+  box-shadow: 0 0 10px 1px rgba(0,0,0,.65);
+
+  a {
+    color: #8b5b85;
+
+    &:hover {
+      color: #1585cf;
+    }
+  }
+
+  div.row {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .terminal-body {
   background: #000;
+}
+
+.nfo-group, .skill-group {
+  &:after {
+    content: ':';
+    display: inline-block;
+  }
+}
+
+.nfo-group {
+  color: #65985f;
+}
+
+.skill-group {
+  padding-right: 1rem;
+  font-weight: bold;
+}
+
+.date {
+  color: #d3781f;
+  font-style: italic;
+  text-align: right;
+}
+
+// terminal caret
+@keyframes caret {
+  to {
+    background: #000;
+  }
+}
+
+.terminal-caret {
+  position: relative;
+}
+
+.terminal-caret::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0.2rem;
+  left: 14.8rem;
+  width: 10px;
+  height: 1.2rem;
+  background: #dcdcdc;
+  animation: caret 1s linear infinite;
 }
