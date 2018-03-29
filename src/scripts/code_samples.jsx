@@ -6,7 +6,7 @@ class CodeSample extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="col col-sm-9 offset-sm-3">
+                <div className="col col-sm-9 offset-sm-3 col-xl-10 offset-xl-2">
                     <a target="blank" href={this.props.sample['url']}>{this.props.sample['name']}</a>
                 </div>
             </div>

@@ -80,7 +80,7 @@ class Additional extends React.Component {
                     <div className="col nfo-group">Additional</div>
                 </div>
                 <div className="row">
-                    <div className="col col-sm-9 offset-sm-3">
+                    <div className="col col-sm-9 offset-sm-3 col-xl-10 offset-xl-2">
                         {cvData['additional']}
                     </div>
                 </div>
