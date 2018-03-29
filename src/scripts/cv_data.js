@@ -2,7 +2,7 @@ export default {
     basic_info: {
         nickname: 'Telonor',
         fio: 'Viievskyi Anton',
-        position: 'Python Software Engineer (Full Stack)',
+        position: 'Full Stack Python Software Engineer',
         // used as new Date(bdaty) to calculate age
         bday: '25 Feb 1989',
         city: 'Lviv, Ukraine',
@@ -51,7 +51,7 @@ export default {
             position: 'Python Full Stack Software Engineer',
             description: 'Several small, low loaded websites, like landings, internet shops',
             responsibility: 'HTML markup using HTML 5 and CSS3 commonly using bootstrap(2,3). Adaptation of this markup to ' +
-                'inner CMS. Updating and fixing existing inner CMS.',
+                'inner CMS. Updating and fixing existing inner CMS',
             technologies: 'Python, Django, MySQL, HTML, CSS, JavaScript, jQuery'
         }
     ],
@@ -132,5 +132,9 @@ export default {
             url: 'https://goo.gl/zUftes'
         }
     ],
-    additional: 'I was born in programmer family, so from my childhood my hobby was PC gaming and IT at all. I like tourism, so i am prepared for business trips. I\'m hard-working person, so if it is necessary, I can work overtime. I’ve spent a lot of time in PC games, as I told, now I\'m spending same amount of time for python coding. I want to work on interesting projects as part of ambitious team using up-to-date technologies.'
+    additional: 'I was born in programmer family, so from my childhood my hobby was PC gaming and IT at all. ' +
+    'I like tourism, so i am prepared for business trips. I\'m hard-working person, so if it is necessary, ' +
+    'I can work overtime. I’ve spent a lot of time in PC games, as I told, now ' +
+    'I\'m spending same amount of time for python coding. I want to work on interesting projects as part of ambitious ' +
+    'team using up-to-date technologies'
 }

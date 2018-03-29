@@ -4,7 +4,7 @@ import render from './renderer.jsx';
 // import styles to script. what a wonderful time.
 import Styles from '../styles/style.scss';
 
-// render();
+render();
 
 (function() {
     document.getElementById('download-cv').addEventListener('click', function (event) {

@@ -1,27 +1,25 @@
 import React from "react";
+import cvData from "./cv_data";
 
-import {Hostname} from "./base.jsx";
-
-class HeaderMenu extends React.Component {
-    render() {
-        return (
-            <ul>
-                <li><button type="button">Download CV</button></li>
-                <li><button type="button">Contact me</button></li>
-            </ul>
-        )
-    }
-}
 
 class Header extends React.Component {
     render() {
         return (
-            <header>
-                <Hostname nickname={this.props.nickname}/>
-                <HeaderMenu/>
+            <header className="terminal">
+                <div className="row">
+                    <div className="col text-center">
+                        <h1>{cvData['basic_info']['nickname']}@localhost:~</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col text-left">
+                        <button className="btn btn-link" id="download-cv">Download CV</button>
+                        <button className="btn btn-link" id="contact-me">Contact me</button>
+                    </div>
+                </div>
             </header>
         )
     }
 }
 
-export {Header};
+export default Header;
