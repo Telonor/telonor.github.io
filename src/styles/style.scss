@@ -49,6 +49,7 @@ header {
     padding-left: .5rem;
     padding-right: .5rem;
     color: white;
+    text-shadow: 1px 1px #000;
 
     &:hover {
       color: white;
@@ -113,6 +114,7 @@ main {
 }
 
 .nfo-group {
+  padding-right: 1rem;
   color: #65985f;
 }
 
