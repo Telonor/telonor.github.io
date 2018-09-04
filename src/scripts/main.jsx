@@ -109,8 +109,8 @@ class Main extends React.Component {
                 <MainInfo/>
                 <Skills/>
                 <Languages/>
-                <Education/>
                 <Experience/>
+                <Education/>
                 <Trainings/>
                 <CodeSamples/>
                 <Additional/>
