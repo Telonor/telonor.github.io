@@ -1,0 +1,14 @@
+@media (min-width: 576px) {
+  .experience-block {
+    [class^="col-"] {
+      order: 3;
+    }
+
+    .company-name {
+      order: 1;
+    }
+    .date {
+      order: 2
+    }
+  }
+}
