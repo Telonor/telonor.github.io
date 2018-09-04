@@ -1,0 +1,24 @@
+.main-footer {
+  // terminal caret
+  @keyframes caret {
+    to {
+      background: #000;
+    }
+  }
+
+  .terminal-caret {
+    position: relative;
+  }
+
+  .terminal-caret::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0.2rem;
+    left: 14.8rem;
+    width: 10px;
+    height: 1.2rem;
+    background: #dcdcdc;
+    animation: caret 1s linear infinite;
+  }
+}

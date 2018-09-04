@@ -1,5 +1,5 @@
 //@TODO partial bootstrap usage
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 
 // our styles
@@ -26,37 +26,6 @@ body {
   background: #762c67;
 }
 
-header {
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-
-  text-align: center;
-  background: #424b4b;
-  background: -webkit-gradient(left top,left bottom,color-stop(0,#424b4b),color-stop(50%,#393f3f),color-stop(100%,#424c4b));
-  background: linear-gradient(180deg,#424b4b 0,#393f3f 50%,#424c4b);
-
-  h1 {
-    margin-bottom: 0;
-    padding-top: .4rem;
-    padding-bottom: .4rem;
-
-    color: #fff;
-    font-size: inherit;
-    font-weight: bold;
-  }
-
-  a.btn-link {
-    padding-left: .5rem;
-    padding-right: .5rem;
-    color: white;
-    text-shadow: 1px 1px #000;
-
-    &:hover {
-      color: white;
-    }
-  }
-}
-
 main {
   padding-top: 1rem;
 }
@@ -76,11 +45,7 @@ main {
   }
 }
 
-.exp-block {
-  margin-bottom: 1rem;
-}
-
-.description, .technologies {
+.description {
   color: gray;
 }
 
@@ -127,27 +92,4 @@ main {
   color: #d3781f;
   font-style: italic;
   text-align: right;
-}
-
-// terminal caret
-@keyframes caret {
-  to {
-    background: #000;
-  }
-}
-
-.terminal-caret {
-  position: relative;
-}
-
-.terminal-caret::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0.2rem;
-  left: 14.8rem;
-  width: 10px;
-  height: 1.2rem;
-  background: #dcdcdc;
-  animation: caret 1s linear infinite;
 }
