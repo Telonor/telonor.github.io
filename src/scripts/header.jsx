@@ -1,13 +1,8 @@
-import React from "react";
+import React, {Component} from "react";
 import cvData from "./cv_data";
 
 
-class Header extends React.Component {
-
-    onDownloadClick() {
-        alert('Under construction.');
-    }
-
+class Header extends Component {
     render() {
         return (
             <header className="terminal">
@@ -18,7 +13,13 @@ class Header extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col text-left">
-                        <button className="btn btn-link" id="download-cv" onClick={this.onDownloadClick}>Download CV</button>
+                        <a
+                            href={process.env.PUBLIC_URL + '/CV.pdf'}
+                            download={cvData['basic_info']['fio']}
+                            className="btn btn-link download"
+                        >
+                            Download CV
+                        </a>
                     </div>
                 </div>
             </header>
