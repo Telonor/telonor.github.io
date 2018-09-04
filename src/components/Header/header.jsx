@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import cvData from "../../cv_data";
 
-import './header.css';
+import "./header.css";
 
 class Header extends Component {
     render() {

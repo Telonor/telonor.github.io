@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import cvData from "../../cv_data";
 import TrainingItem from "../TrainingItem/training_item";
 
-class Trainings extends React.Component {
+class Trainings extends Component {
     render() {
         return (
             <figure>

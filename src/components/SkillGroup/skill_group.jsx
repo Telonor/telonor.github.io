@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import cvData from "../../cv_data";
 
-import './skill_group.css';
+import "./skill_group.css";
 
 export default class SkillGroup extends Component {
 

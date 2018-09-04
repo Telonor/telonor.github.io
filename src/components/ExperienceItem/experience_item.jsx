@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
 
-import './experience_item.css';
+import "./experience_item.css";
 
 export default class ExperienceItem extends Component {
     render() {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import cvData from "../../cv_data";
 import ExperienceItem from "../ExperienceItem/experience_item";
 
-import './experience.css';
+import "./experience.css";
 
 class Experience extends Component {
     render() {
