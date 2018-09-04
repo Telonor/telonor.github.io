@@ -3,7 +3,7 @@ export default {
         nickname: 'Telonor',
         fio: 'Viievskyi Anton',
         position: 'Full Stack Python Software Engineer',
-        // used as new Date(bdaty) to calculate age
+        // used as new Date(bday) to calculate age
         bday: '25 Feb 1989',
         city: 'Kyiv',
         family_status: 'Married',
@@ -13,75 +13,69 @@ export default {
     timestamp: '2018',
     education: [
         {
-            name: 'Kryvyi Rih Institute of Economics, KNEU, master degree of Economic Cybernetics',
-            date: '2006 - 2011'
+            name: 'Kryvyi Rih Institute of Economics, KNEU, master degree of Economic Cybernetics.',
+            date: '2006 — 2011'
         }
     ],
     experience: [
         {
             name: 'GlobalLogic',
-            date: '07.2017 - 08.2018',
-            position: 'Python Software Engineer',
-            responsibility: 'Design, develop, update and fix modules based on tech requirements and requests from QA team',
-            description: 'AQA Framework for the testing product for one of the most known communicational company',
-            technologies: 'Python, pytest, Selenium, Javascript'
+            date: '07.2017 — 08.2018',
+            position: 'Python Full Stack Software Engineer',
+            description: 'Development of an AQA framework for one of the most known communication companies. ' +
+                'Backend and frontend development of web-service.',
         },
         {
             name: 'Synergy Way',
             date: '08.2016 - 07.2017',
             position: 'Python Full Stack Software Engineer',
-            description: 'A browser-based, user interface into the powerful Dispatch system. The product is ideal for distributed ' +
-                'call center operations and allows primary functions including call taking and dispatching, vehicle' +
-                'tracking and account/driver/vehicle administration',
-            responsibility: 'Design, develop, update and fix product features and modules based on technical requirements using ' +
-                'technologies listed below',
-            technologies: 'Python, Django, Flask, Mysql, Tornado, Websockets, JavaScript, JQuery, HTML, CSS'
+            description: 'Backend and frontend development of [Arcus](https://synergy-way.com/post_type/arcus/) - the powerful Dispatch system.',
         },
         {
             name: 'Outsource social network development',
             date: '08.2014 - 07.2016',
             position: 'Python Full Stack Software Engineer',
-            description: 'Local startup of the e-commerce oriented social network based on python with Django',
-            responsibility: 'Design, develop new modules of the system as well as update and fix existing modules',
-            technologies: 'Python, Django, PostgreSQL, HTML5, CSS3, Javascript, jQuery'
+            description: 'Local startup of the e-commerce oriented social network based on python with Django.',
         },
         {
             name: 'сode.ua',
             date: '2012 - 08.2014',
             position: 'Python Full Stack Software Engineer',
-            description: 'Several small, low loaded websites, like landings, internet shops',
-            responsibility: 'HTML markup using HTML 5 and CSS3 commonly using bootstrap(2,3). Adaptation of this markup to ' +
-                'inner CMS. Updating and fixing existing inner CMS',
-            technologies: 'Python, Django, MySQL, HTML, CSS, JavaScript, jQuery'
+            description: 'Backend and frontend development of local sites (e-trade, landings, etc.).',
         }
     ],
     skills: {
         Backend: [
-            'Python',
-            'Django (1.4-1.10)',
+            'Python 2.7 with Django (1.4, 1.6-1.10)',
+            'Python 3.6 with Django (2.0)',
+            'Django REST framework',
+            'Selenium',
+            'pytest',
             'Flask',
             'SQLAlchemy',
             'MySQL',
             'PostgreSQL',
-            'pytest',
-            'Selenium',
-            'Allure'
+            'Docker'
         ],
         Frontend: [
-            'JavaScript (es5, es6+)',
+            'JavaScript including new ES features',
+            'React',
+            'Redux',
+            'Webpack',
+            'Gulp',
             'jQuery',
-            'Bootstrap (2-4)',
+            'Bootstrap (2', '3', '4)',
             'Skeleton',
             'Foundation 6',
-            'SCSS'
+            'SCSS',
+            'Less'
         ],
         VCS: [
             'Git',
-            'GitFlow',
             'Mercurial'
         ],
         OS: [
-            'Linux (Ubuntu, Fedora)'
+            'Linux (Fedora, Ubuntu)'
         ]
     },
     languages: [
@@ -122,19 +116,21 @@ export default {
             url: 'http://codepen.io/Telonor',
         }
     ],
-    happy_days: [
+    accounts: [
         {
-            name: 'World of Tanks' ,
+            name: 'World of Tanks',
             url: 'http://worldoftanks.ru/ru/community/accounts/98091-Telonor/'
         },
         {
-            name: 'World of Warcraft' ,
-            url: 'https://goo.gl/zUftes'
+            name: 'World of Warcraft',
+            url: 'http://eu.battle.net/wow/en/character/%D0%B2%D0%B5%D1%87%D0%BD%D0%B0%D1%8F-%D0%BF%D0%B5%D1%81%D0%BD%D1%8F/%D0%A2%D0%B5%D0%BB%D0%BE%D0%BD%D0%BE%D1%80/simple'
         }
     ],
-    additional: 'I was born in programmer family, so from my childhood my hobby was PC gaming and IT at all. ' +
-    'I like tourism, so i am prepared for business trips. I\'m hard-working person, so if it is necessary, ' +
-    'I can work overtime. I’ve spent a lot of time in PC games, as I told, now ' +
-    'I\'m spending same amount of time for python coding. I want to work on interesting projects as part of ambitious ' +
-    'team using up-to-date technologies'
+    additional: 'I was born in the programmer\'s family, so from my childhood, my hobby was PC gaming and IT at all. ' +
+        'I like tourism, so I am prepared for business trips. I\'m a hard-working person, so if it is necessary, I can work overtime. ' +
+        'I’ve spent a lot of time in PC games, as I told, here is some of my accounts: ' +
+        '[World of Tanks](http://worldoftanks.ru/ru/community/accounts/98091-Telonor/), ' +
+        '[World of Warcraft](http://eu.battle.net/wow/en/character/вечная-песня/Телонор/simple), ' +
+        'and I want to spend the same amount of time for python coding working on interesting projects as part of ' +
+        'an ambitious team using up-to-date technologies.'
 }

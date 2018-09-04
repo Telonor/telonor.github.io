@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactMarkdown from "react-markdown";
+
 import cvData from './cv_data';
 
 import Skills from './skills.jsx';
@@ -7,6 +9,7 @@ import Education from './educations.jsx';
 import Experience from './experience.jsx';
 import Trainings from './trainings.jsx';
 import CodeSamples from './code_samples.jsx';
+
 
 class MainHeader extends React.Component {
     render() {
@@ -81,7 +84,7 @@ class Additional extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col col-sm-9 offset-sm-3 col-xl-10 offset-xl-2">
-                        {cvData['additional']}
+                        <ReactMarkdown source={cvData['additional']}/>
                     </div>
                 </div>
             </figure>
