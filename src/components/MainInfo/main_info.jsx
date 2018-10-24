@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import cvData from "../../cv_data";
+import { getAge } from "../../utils";
 
 export default class MainInfo extends Component {
-    getAge(bdate) {
-        return new Date().getFullYear() - new Date(
-            bdate
-        ).getFullYear();
-    }
-
     render() {
         return (
             <figure>
                 <div className="row">
                     <div className="col">
                         <span className="nfo-group">Age</span>
-                        {this.getAge(cvData['basic_info']['bday'])}
+                        {getAge(cvData['basic_info']['bday'])}
                     </div>
                 </div>
                 <div className="row">

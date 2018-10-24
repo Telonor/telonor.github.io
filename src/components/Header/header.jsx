@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import cvData from "../../cv_data";
 
 import "./header.css";
+import PDFRenderer from "../../pdf_render";
 
 class Header extends Component {
+    downloadCV() {
+        let renderer = new PDFRenderer();
+        renderer.render();
+    }
+
     render() {
         return (
             <header className="terminal">
@@ -14,13 +20,12 @@ class Header extends Component {
                 </div>
                 <div className="row">
                     <div className="col text-left">
-                        <a
-                            href={process.env.PUBLIC_URL + '/CV.pdf'}
-                            download={cvData['basic_info']['fio']}
+                        <button
                             className="btn btn-link download"
+                            onClick={this.downloadCV}
                         >
                             Download CV
-                        </a>
+                        </button>
                     </div>
                 </div>
             </header>

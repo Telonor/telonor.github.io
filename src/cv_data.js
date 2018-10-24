@@ -8,19 +8,20 @@ export default {
         city: 'Kyiv',
         family_status: 'Married',
         email: 'viievskyi.anton@gmail.com',
-        skype: 'Telonor'
+        skype: 'Telonor',
+        page: 'telonor.github.io'
     },
     timestamp: '2018',
     education: [
         {
             name: 'Kryvyi Rih Institute of Economics, KNEU, master degree of Economic Cybernetics.',
-            date: '2006 — 2011'
+            date: '2006 - 2011'
         }
     ],
     experience: [
         {
             name: 'GlobalLogic',
-            date: '07.2017 — 08.2018',
+            date: '07.2017 - 08.2018',
             position: 'Python Full Stack Software Engineer',
             description: 'Development of an AQA framework for one of the most known communication companies. ' +
                 'Backend and frontend development of web-service.',
@@ -38,7 +39,7 @@ export default {
             description: 'Local startup of the e-commerce oriented social network based on python with Django.',
         },
         {
-            name: 'сode.ua',
+            name: 'code.ua',
             date: '2012 - 08.2014',
             position: 'Python Full Stack Software Engineer',
             description: 'Backend and frontend development of local sites (e-trade, landings, etc.).',
