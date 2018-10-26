@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 export default class TrainingItem extends Component {
     render() {
+        // @TODO fix. It's possible to have training item without link or just use markup
         return (
             <div className="row">
                 <div className="col-12 date">{this.props.trn['date']}</div>

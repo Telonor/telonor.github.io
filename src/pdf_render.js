@@ -7,11 +7,16 @@ import React from "react";
 const rowInterval = 5;
 const borderOffset = 15;
 const rightColumnX = 60;
+const linkColor = '#007bff';
+const textColor = '000000';
 
 export default class PDFRenderer {
     constructor() {
         this.doc = JsPDF();
-        this._prevRowY = 0;
+        this._page = 0;
+        this._prevRowY = {
+          0: 0,
+        };
         this.doc.setFont('helvetica');
     }
 
@@ -22,9 +27,9 @@ export default class PDFRenderer {
         this._renderLanguages();
         this._renderExperience();
         this._renderEducation();
-        // @TODO trainings
-        // @TODO code samples
-        // @TODO additional
+        this._renderTrainings();
+        this._renderCodeSamples();
+        this._renderAdditionalInfo();
         this.doc.save(`${cvData['basic_info']['fio']}.pdf`);
     }
 
@@ -46,22 +51,28 @@ export default class PDFRenderer {
         // it's possible to get string or array of strings as input
         if (text instanceof Array) {
             // just hook to skip lines, like we have only one line added
-            this._prevRowY = this._getNextRowY(text.length - 1);
+            this._setPrevRowY(this._getNextRowY(text.length - 1));
         } else {
-            this._prevRowY = y;
+            this._setPrevRowY(y);
         }
 
         this.doc.text(text, x, y);
     }
 
+    _setPrevRowY(y) {
+        this._prevRowY[this._page] = y;
+    }
+
     _textWithLink(text, y, x=borderOffset, options=undefined) {
-        this._prevRowY = y;
+        this._setPrevRowY(y);
+        this.doc.setTextColor(linkColor);
         this.doc.textWithLink(text, x, y, options);
+        this.doc.setTextColor(textColor);
     }
 
     _getNextRowY(blank_lines=0) {
         // et least one blank line should be.
-        return this._prevRowY + rowInterval * (1 + blank_lines);
+        return this._prevRowY[this._page] + rowInterval * (1 + blank_lines);
     }
 
     _getTextWidth(text) {
@@ -104,15 +115,13 @@ export default class PDFRenderer {
 
         let pageTitle = 'Web-page:';
         this._text(pageTitle, this._getNextRowY());
-        this.doc.setTextColor('#007bff');
         this._textWithLink(
             basicInfo['page'],
-            this._prevRowY,
+            this._prevRowY[this._page],
             borderOffset + this._getTextWidth(pageTitle) + this._getTextWidth(' '),
             {url: basicInfo['page']}
         );
 
-        this.doc.setTextColor('#000000');
         this._text(`Skype: ${basicInfo['skype']}`, this._getNextRowY());
     }
 
@@ -131,7 +140,7 @@ export default class PDFRenderer {
         // @TODO make group title bold, and then print group skills over it prepended with spaces * len(groupTitle)
         Object.keys(skills).forEach(
             (skillGroup) => {
-                let groupSkillsString = `${skillGroup}: ${skills[skillGroup].join(', ')}.`;
+                let groupSkillsString = `${skillGroup}: ${skills[skillGroup].join(', ')}`;
 
                 let splittedToSize = this.doc.splitTextToSize(
                     groupSkillsString,
@@ -163,7 +172,7 @@ export default class PDFRenderer {
         // right column
         this._setFontNormal();
         this._text(
-            `${languages.join(', ')}.`,
+            `${languages.join(', ')}`,
             groupY,
             rightColumnX,
         )
@@ -187,7 +196,7 @@ export default class PDFRenderer {
                 this._setFontItalic();
                 this._rightAlignedText(
                     exp['date'],
-                    index ? this._getNextRowY(1) : groupY
+                    index ? this._getNextRowY() : groupY
                 );
 
                 // company
@@ -238,7 +247,7 @@ export default class PDFRenderer {
                 this._setFontItalic();
                 this._rightAlignedText(
                     edu['date'],
-                    index ? this._getNextRowY(1) : groupY,
+                    index ? this._getNextRowY() : groupY,
                 );
 
                 this._setFontNormal();
@@ -251,5 +260,115 @@ export default class PDFRenderer {
         );
 
 
+    }
+
+    _renderTrainings() {
+        const trainings = cvData['trainings'];
+        const groupY = this._getNextRowY(1);
+
+        // left column
+        this._setFontBold();
+        this._text(
+            'Trainings:',
+            groupY
+        );
+
+        // right column
+        trainings.forEach(
+            (trn, index) => {
+                this._setFontItalic();
+                this._rightAlignedText(
+                    trn['date'],
+                    index ? this._getNextRowY() : groupY
+                );
+
+                let trnY = this._getNextRowY();
+
+                this._setFontNormal();
+
+                if (trn.url) {
+                    this._textWithLink(
+                        trn['name'],
+                        trnY,
+                        rightColumnX,
+                        {url: trn['url']}
+                    );
+                } else {
+                    this._text(
+                        trn['name'],
+                        trnY,
+                        rightColumnX,
+                    );
+                }
+
+                if (trn['target']) {
+                    this._text(
+                        ` - ${trn['target']}`,
+                        trnY,
+                        rightColumnX + this._getTextWidth(trn['name'])
+                    );
+                }
+            }
+        )
+    }
+
+    _addPage() {
+        this._page = this._page + 1;
+        this._setPrevRowY(0);
+        this.doc.addPage();
+    }
+
+    _renderCodeSamples() {
+        // @TODO add auto .addPage if text will not fit current page end
+        this._addPage();
+
+        const codeSamples = cvData['code_samples'];
+        const groupY = this._getNextRowY(1);
+
+        // left column
+        this._setFontBold();
+        this._text(
+            'Code samples:',
+            groupY
+        );
+
+        // right column
+        codeSamples.forEach(
+            (sample, index) => {
+
+                this._setFontNormal();
+                this._textWithLink(
+                    sample['name'],
+                    index ? this._getNextRowY() : groupY,
+                    rightColumnX,
+                    {url: sample['url']}
+                );
+            }
+        )
+    }
+
+    _renderAdditionalInfo() {
+        const additional = cvData['additional'];
+        const groupY = this._getNextRowY(1);
+        const splittedAdditional = this.doc.splitTextToSize(
+            additional,
+            this.doc.internal.pageSize.getWidth() - rightColumnX - borderOffset
+        );
+
+        // left column
+        this._setFontBold();
+        this._text(
+            'Additional information: ',
+            groupY
+        );
+
+        // right column
+        // @TODO remove goo.gl link after jsPDF will fix unicode support
+        this._setFontNormal();
+        this._text(
+            splittedAdditional,
+            groupY,
+            rightColumnX
+        );
     }
 };

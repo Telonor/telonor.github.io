@@ -14,7 +14,7 @@ export default {
     timestamp: '2018',
     education: [
         {
-            name: 'Kryvyi Rih Institute of Economics, KNEU, master degree of Economic Cybernetics.',
+            name: 'Kryvyi Rih Institute of Economics, KNEU, master degree of Economic Cybernetics',
             date: '2006 - 2011'
         }
     ],
@@ -24,25 +24,25 @@ export default {
             date: '07.2017 - 08.2018',
             position: 'Python Full Stack Software Engineer',
             description: 'Development of an AQA framework for one of the most known communication companies. ' +
-                'Backend and frontend development of web-service.',
+                'Backend and frontend development of web-service',
         },
         {
             name: 'Synergy Way',
             date: '08.2016 - 07.2017',
             position: 'Python Full Stack Software Engineer',
-            description: 'Backend and frontend development of [Arcus](https://synergy-way.com/post_type/arcus/) - the powerful Dispatch system.',
+            description: 'Backend and frontend development of [Arcus](https://synergy-way.com/post_type/arcus/) - the powerful Dispatch system',
         },
         {
             name: 'Outsource social network development',
             date: '08.2014 - 07.2016',
             position: 'Python Full Stack Software Engineer',
-            description: 'Local startup of the e-commerce oriented social network based on python with Django.',
+            description: 'Local startup of the e-commerce oriented social network based on python with Django',
         },
         {
             name: 'code.ua',
             date: '2012 - 08.2014',
             position: 'Python Full Stack Software Engineer',
-            description: 'Backend and frontend development of local sites (e-trade, landings, etc.).',
+            description: 'Backend and frontend development of local sites (e-trade, landings, etc.)',
         }
     ],
     skills: {
@@ -128,10 +128,11 @@ export default {
         }
     ],
     additional: 'I was born in the programmer\'s family, so from my childhood, my hobby was PC gaming and IT at all. ' +
-        'I like tourism, so I am prepared for business trips. I\'m a hard-working person, so if it is necessary, I can work overtime. ' +
-        'I’ve spent a lot of time in PC games, as I told, here is some of my accounts: ' +
+        'I like tourism, so I am prepared for business trips. ' +
+        'I\'m a hard-working person, so if it is necessary, I can work overtime. ' +
+        'I\'ve spent a lot of time in PC games, as I told, here is some of my accounts: ' +
         '[World of Tanks](http://worldoftanks.ru/ru/community/accounts/98091-Telonor/), ' +
-        '[World of Warcraft](http://eu.battle.net/wow/en/character/вечная-песня/Телонор/simple), ' +
+        '[World of Warcraft](https://goo.gl/EDSQcT), ' +
         'and I want to spend the same amount of time for python coding working on interesting projects as part of ' +
-        'an ambitious team using up-to-date technologies.'
+        'an ambitious team using up-to-date technologies'
 }
