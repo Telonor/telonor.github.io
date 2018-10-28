@@ -143,18 +143,40 @@ export default class PDFRenderer {
         // right column
 
         this._setFontNormal();
-        // @TODO make group title bold, and then print group skills over it prepended with spaces * len(groupTitle)
         Object.keys(skills).forEach(
             (skillGroup, index) => {
-                const groupSkillsString = `${skillGroup}: ${skills[skillGroup].join(', ')}`;
+                const y = index ? this._getNextRowY(1) : groupY;
+                const groupTitle = `${skillGroup}: `;
+
+                // prepend with spaces of title length * needed space count
+                // calculate coefficient
+                // save bold title with
+                this._setFontBold();
+                const boldWidth = this.doc.getTextWidth(groupTitle);
+                // save normal title with
+                this._setFontNormal();
+                const normalWidth = this.doc.getTextWidth(' ');
+                const spacesCount = boldWidth / normalWidth;
+
+                const groupSkillsString = `${' '.repeat(spacesCount)} ${skills[skillGroup].join(', ')}`;
                 const splittedToSize = this.doc.splitTextToSize(
                     groupSkillsString,
                     this.doc.internal.pageSize.getWidth() - borderOffset - rightColumnX
                 );
 
+                // group title
+                this._setFontBold();
+                this._text(
+                    groupTitle,
+                    y,
+                    rightColumnX
+                );
+
+                // group skills
+                this._setFontNormal();
                 this._text(
                     splittedToSize,
-                    index ? this._getNextRowY(1) : groupY,
+                    y,
                     rightColumnX
                 );
             }
