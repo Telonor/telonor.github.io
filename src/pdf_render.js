@@ -3,8 +3,7 @@ import cvData from "./cv_data";
 import {getAge} from "./utils";
 import React from "react";
 
-// @TODO get this from doc
-const rowInterval = 5;
+const ptToMM = 0.3528;
 const borderOffset = 15;
 const rightColumnX = 60;
 const linkColor = '#007bff';
@@ -12,7 +11,7 @@ const textColor = '000000';
 
 export default class PDFRenderer {
     constructor() {
-        this.doc = JsPDF();
+        this.doc = JsPDF({lineHeight: 1.4});
         this._page = 0;
         this._prevRowY = {
           0: 0,
@@ -33,6 +32,10 @@ export default class PDFRenderer {
         this.doc.save(`${cvData['basic_info']['fio']}.pdf`);
     }
 
+    _getLineInterval() {
+        return this.doc.internal.getLineHeight() * ptToMM;
+    }
+
     _setFontNormal() {
         this.doc.setFontStyle('normal');
     };
@@ -46,12 +49,16 @@ export default class PDFRenderer {
         this.doc.setFontStyle('italic');
     }
 
-    _text(text, y, x=borderOffset) {
+    _addPage() {
+        this._page = this._page + 1;
+        this._setPrevRowY(0);
+        this.doc.addPage();
+    }
 
+    _text(text, y, x=borderOffset) {
         // it's possible to get string or array of strings as input
-        if (text instanceof Array) {
-            // just hook to skip lines, like we have only one line added
-            this._setPrevRowY(this._getNextRowY(text.length - 1));
+        if (Object.prototype.toString.call(text) === '[object Array]' && text.length > 1) {
+            this._setPrevRowY(y + this._getLineInterval() * (text.length -1));
         } else {
             this._setPrevRowY(y);
         }
@@ -72,7 +79,7 @@ export default class PDFRenderer {
 
     _getNextRowY(blank_lines=0) {
         // et least one blank line should be.
-        return this._prevRowY[this._page] + rowInterval * (1 + blank_lines);
+        return this._prevRowY[this._page] + this._getLineInterval() * (1 + blank_lines);
     }
 
     _getTextWidth(text) {
@@ -96,7 +103,7 @@ export default class PDFRenderer {
         this._setFontBold();
 
         this.doc.setFontSize(14);
-        this._centeredText(basicInfo['fio'], 20);
+        this._centeredText(basicInfo['fio'], borderOffset);
 
         this.doc.setFontSize(12);
         this._centeredText(basicInfo['position'], this._getNextRowY());
@@ -134,26 +141,22 @@ export default class PDFRenderer {
         // left column
         this._text('Skills:', groupY);
         // right column
-        let nextY = groupY;
 
         this._setFontNormal();
         // @TODO make group title bold, and then print group skills over it prepended with spaces * len(groupTitle)
         Object.keys(skills).forEach(
-            (skillGroup) => {
-                let groupSkillsString = `${skillGroup}: ${skills[skillGroup].join(', ')}`;
-
-                let splittedToSize = this.doc.splitTextToSize(
+            (skillGroup, index) => {
+                const groupSkillsString = `${skillGroup}: ${skills[skillGroup].join(', ')}`;
+                const splittedToSize = this.doc.splitTextToSize(
                     groupSkillsString,
                     this.doc.internal.pageSize.getWidth() - borderOffset - rightColumnX
                 );
 
                 this._text(
                     splittedToSize,
-                    nextY,
+                    index ? this._getNextRowY(1) : groupY,
                     rightColumnX
                 );
-
-                nextY = nextY + splittedToSize.length * rowInterval;
             }
         );
     }
@@ -312,18 +315,12 @@ export default class PDFRenderer {
         )
     }
 
-    _addPage() {
-        this._page = this._page + 1;
-        this._setPrevRowY(0);
-        this.doc.addPage();
-    }
-
     _renderCodeSamples() {
         // @TODO add auto .addPage if text will not fit current page end
         this._addPage();
 
         const codeSamples = cvData['code_samples'];
-        const groupY = this._getNextRowY(1);
+        const groupY = borderOffset;
 
         // left column
         this._setFontBold();
