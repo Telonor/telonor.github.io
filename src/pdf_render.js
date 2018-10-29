@@ -12,11 +12,12 @@ const urlMarkdownPattern = /\[([\w ]+)\]\(([\w:/\-._]+)\)/g;
 const urlConfigPositionNotSet = -1;
 
 class UrlConfig {
-    constructor(text, url, xPosition=urlConfigPositionNotSet) {
+    constructor(text, url, xPosition=urlConfigPositionNotSet, yPosition=urlConfigPositionNotSet) {
         this.text = text;
         this.url = url;
         // -1 indicates that it was not set yet (for multiline)
         this.replaceX = xPosition;
+        this.replaceY = yPosition;
     }
 }
 
@@ -77,6 +78,7 @@ export default class PDFRenderer {
     _renderLinkMarkdown(text, y, x=borderOffset, maxLen=0) {
         // if text contains links
         // lets for now assume that we may hold only one link with same linkText
+        // linkText doesn't collate with other text in original string
         // as well as the link should use same font params as other text
         // @TODO make in possible to hold multiple links with same linkText
         let urlConfigs = {};
@@ -117,9 +119,55 @@ export default class PDFRenderer {
 
         // if we are here we have checked that we have link markdown(s)
         if (maxLen) {
+            // first of all - split text to fit size
             _buffText = this.doc.splitTextToSize(
                 _buffText,
                 maxLen
+            );
+
+            // for each row in splitted text array try to find and and calculate replace x and y of the url
+            _buffText.forEach(
+                (row, idx) => {
+                    matchesKeys.forEach(
+                        (urlText) => {
+                            const config = urlConfigs[urlText];
+                            const indexOfUrl = row.indexOf(urlText);
+                            if (indexOfUrl !== -1) {
+                                config.replaceX = x + this.doc.getTextWidth(
+                                    row.slice(0, row.indexOf(urlText))
+                                );
+
+                                config.replaceY = y + idx * this._getLineInterval();
+                            }
+                        }
+                    )
+                }
+            );
+
+            // replace urlText with spaces
+            matchesKeys.forEach(
+                (urlText) => {
+                    _buffText.forEach(
+                        (row, idx) => {
+                            _buffText[idx] = this._replaceWithSpaces(row, urlText);
+                        }
+                    );
+
+                }
+            );
+
+
+            // print links
+            matchesKeys.forEach(
+                (urlText) => {
+                    const config = urlConfigs[urlText];
+                    this._textWithLink(
+                        urlText,
+                        config.replaceY,
+                        config.replaceX,
+                        {url: config.url}
+                    );
+                }
             );
 
             // just print for now
@@ -127,18 +175,15 @@ export default class PDFRenderer {
 
         // if we may left text single line
         } else {
-
             // calculate replaceX of the links
-            if (matchesKeys.length) {
-                matchesKeys.forEach(
-                    (urlText) => {
-                        const config = urlConfigs[urlText];
-                        config.replaceX = x + this.doc.getTextWidth(
-                            _buffText.slice(0, _buffText.indexOf(urlText))
-                        )
-                    }
-                );
-            }
+            matchesKeys.forEach(
+                (urlText) => {
+                    const config = urlConfigs[urlText];
+                    config.replaceX = x + this.doc.getTextWidth(
+                        _buffText.slice(0, _buffText.indexOf(urlText))
+                    )
+                }
+            );
 
             matchesKeys.forEach(
                 (urlText) => {
@@ -355,7 +400,7 @@ export default class PDFRenderer {
                     exp['description'],
                     this._getNextRowY(),
                     rightColumnX,
-                    // this.doc.internal.pageSize.getWidth() - borderOffset - rightColumnX
+                    this.doc.internal.pageSize.getWidth() - borderOffset - rightColumnX
                 )
             }
         );
@@ -476,10 +521,6 @@ export default class PDFRenderer {
     _renderAdditionalInfo() {
         const additional = cvData['additional'];
         const groupY = this._getNextRowY(1);
-        const splittedAdditional = this.doc.splitTextToSize(
-            additional,
-            this.doc.internal.pageSize.getWidth() - rightColumnX - borderOffset
-        );
 
         // left column
         this._setFontBold();
@@ -491,10 +532,11 @@ export default class PDFRenderer {
         // right column
         // @TODO remove goo.gl link after jsPDF will fix unicode support
         this._setFontNormal();
-        this._text(
-            splittedAdditional,
+        this._renderLinkMarkdown(
+            additional,
             groupY,
-            rightColumnX
+            rightColumnX,
+            this.doc.internal.pageSize.getWidth() - rightColumnX - borderOffset
         );
     }
 };

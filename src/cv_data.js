@@ -131,8 +131,8 @@ export default {
         'I like tourism, so I am prepared for business trips. ' +
         'I\'m a hard-working person, so if it is necessary, I can work overtime. ' +
         'I\'ve spent a lot of time in PC games, as I told, here is some of my accounts: ' +
-        '[World of Tanks](http://worldoftanks.ru/ru/community/accounts/98091-Telonor/), ' +
-        '[World of Warcraft](https://goo.gl/EDSQcT), ' +
+        '[WoT](http://worldoftanks.ru/ru/community/accounts/98091-Telonor/), ' +
+        '[WoW](https://goo.gl/EDSQcT), ' +
         'and I want to spend the same amount of time for python coding working on interesting projects as part of ' +
         'an ambitious team using up-to-date technologies'
 }
