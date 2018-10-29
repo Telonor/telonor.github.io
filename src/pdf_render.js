@@ -1,4 +1,4 @@
-import JsPDF from "jspdf";
+import JsPDF from "jspdf/dist/jspdf.debug";
 import cvData from "./cv_data";
 import {getAge} from "./utils";
 import React from "react";
@@ -8,6 +8,17 @@ const borderOffset = 15;
 const rightColumnX = 60;
 const linkColor = '#007bff';
 const textColor = '000000';
+const urlMarkdownPattern = /\[([\w ]+)\]\(([\w:/\-._]+)\)/g;
+const urlConfigPositionNotSet = -1;
+
+class UrlConfig {
+    constructor(text, url, xPosition=urlConfigPositionNotSet) {
+        this.text = text;
+        this.url = url;
+        // -1 indicates that it was not set yet (for multiline)
+        this.replaceX = xPosition;
+    }
+}
 
 export default class PDFRenderer {
     constructor() {
@@ -53,6 +64,105 @@ export default class PDFRenderer {
         this._page = this._page + 1;
         this._setPrevRowY(0);
         this.doc.addPage();
+    }
+
+    _replaceWithSpaces(originText, replaceText) {
+        const replaceTextWidth = this.doc.getTextWidth(replaceText);
+        const spaceWidth = this.doc.getTextWidth(' ');
+        const spacesCount = replaceTextWidth / spaceWidth;
+
+        return originText.replace(replaceText, ' '.repeat(spacesCount));
+    }
+
+    _renderLinkMarkdown(text, y, x=borderOffset, maxLen=0) {
+        // if text contains links
+        // lets for now assume that we may hold only one link with same linkText
+        // as well as the link should use same font params as other text
+        // @TODO make in possible to hold multiple links with same linkText
+        let urlConfigs = {};
+        let _buffText;
+
+        // replace link markdowns with urlText
+        _buffText = text.replace(
+            urlMarkdownPattern,
+            (match, urlText, urlLink, position) => {
+                // collect information about found link markdowns
+                urlConfigs[urlText] = new UrlConfig(urlText, urlLink);
+                return urlText;
+            }
+        );
+
+        const matchesKeys = Object.keys(urlConfigs);
+        // if we don't have what to replace just print original text
+        if (!matchesKeys.length) {
+            // if we should fit some size
+            let _text;
+            if (maxLen) {
+                _text = this.doc.splitTextToSize(
+                    _buffText,
+                    maxLen
+                );
+            } else {
+                _text = _buffText;
+            }
+
+            this._text(
+                _text,
+                y,
+                x
+            );
+
+            return;
+        }
+
+        // if we are here we have checked that we have link markdown(s)
+        if (maxLen) {
+            _buffText = this.doc.splitTextToSize(
+                _buffText,
+                maxLen
+            );
+
+            // just print for now
+            this._text(_buffText, y, x)
+
+        // if we may left text single line
+        } else {
+
+            // calculate replaceX of the links
+            if (matchesKeys.length) {
+                matchesKeys.forEach(
+                    (urlText) => {
+                        const config = urlConfigs[urlText];
+                        config.replaceX = x + this.doc.getTextWidth(
+                            _buffText.slice(0, _buffText.indexOf(urlText))
+                        )
+                    }
+                );
+            }
+
+            matchesKeys.forEach(
+                (urlText) => {
+                    const config = urlConfigs[urlText];
+                    // replace original linkText with space placeholders
+                    _buffText = this._replaceWithSpaces(_buffText, urlText);
+
+                    // print links first
+                    this._textWithLink(
+                        urlText,
+                        y,
+                        config.replaceX,
+                        {url: config.url}
+                    );
+                }
+            );
+
+            // print origin text with space placeholders for links
+            this._text(
+                _buffText,
+                y,
+                x
+            )
+        }
     }
 
     _text(text, y, x=borderOffset) {
@@ -241,14 +351,11 @@ export default class PDFRenderer {
 
                 // description
                 this._setFontItalic();
-                this._text(
-                    // @TODO link markup parsing
-                    this.doc.splitTextToSize(
-                        exp['description'],
-                        this.doc.internal.pageSize.getWidth() - borderOffset - rightColumnX
-                    ),
+                this._renderLinkMarkdown(
+                    exp['description'],
                     this._getNextRowY(),
-                    rightColumnX
+                    rightColumnX,
+                    // this.doc.internal.pageSize.getWidth() - borderOffset - rightColumnX
                 )
             }
         );
