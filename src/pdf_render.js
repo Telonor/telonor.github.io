@@ -1,4 +1,4 @@
-import JsPDF from "jspdf/dist/jspdf.debug";
+import JsPDF from "jspdf/dist/jspdf.es.js";
 import cvData from "./cv_data";
 import {getAge} from "./utils";
 import React from "react";
@@ -10,6 +10,7 @@ const linkColor = '#007bff';
 const textColor = '000000';
 const urlMarkdownPattern = /\[([\w ]+)\]\(([\w:/\-._]+)\)/g;
 const urlConfigPositionNotSet = -1;
+const fontName = "helvetica";
 
 class UrlConfig {
     constructor(text, url, xPosition=urlConfigPositionNotSet, yPosition=urlConfigPositionNotSet) {
@@ -28,7 +29,7 @@ export default class PDFRenderer {
         this._prevRowY = {
           0: 0,
         };
-        this.doc.setFont('helvetica');
+        this.doc.setFont(fontName);
     }
 
     render() {
@@ -49,16 +50,16 @@ export default class PDFRenderer {
     }
 
     _setFontNormal() {
-        this.doc.setFontStyle('normal');
+        this.doc.setFont(fontName, 'normal');
     };
 
     _setFontBold() {
-        this.doc.setFontStyle('bold');
+        this.doc.setFont(fontName, 'bold');
 
     }
 
     _setFontItalic() {
-        this.doc.setFontStyle('italic');
+        this.doc.setFont(fontName, 'italic');
     }
 
     _addPage() {
