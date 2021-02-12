@@ -1,0 +1,227 @@
+{
+  "basics": {
+    "name": "Anton Viievskyi",
+    "label": "Software Engineer",
+    "picture": null,
+    "email": "viievskyi.anton@gmail.com",
+    "phone": "+380976772383",
+    "website": "telonor.github.io",
+    "summary": "I was born in the programmer's family, so from my childhood, my hobby was PC gaming and IT at all. At this moment I've been bringing quality solutions to my employers for over 9 years, 5 more years of programming has been spent during the education including C++ experience. I like tourism, so I am prepared for business trips. I'm a hard-working person, so if it is necessary, I can work overtime. I've spent a lot of time in PC games, as I told, and I want to spend the same amount of time for python coding working on interesting projects as part of an ambitious team using up-to-date technologies",
+    "location": {
+      "countryCode": "UA",
+      "city": "Lviv",
+      "region": "Lviv oblast"
+    }
+  },
+  "education": [
+    {
+      "institution": "Kryvyi Rih Institute of Economics, KNEU",
+      "area": "Economic Cybernetics",
+      "studyType": "Master",
+      "startDate": "2010-09-01",
+      "endDate": "2011-07-01",
+      "gpa": null,
+      "courses": [
+        "In-depth study of foreign language (English)"
+      ]
+    },
+    {
+      "institution": "Kryvyi Rih Institute of Economics, KNEU",
+      "area": "Economic Cybernetics",
+      "studyType": "Bachelor",
+      "startDate": "2006-09-01",
+      "endDate": "2010-07-01",
+      "gpa": null,
+      "courses": [
+        "In-depth study of foreign language (English)"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Upper-Intermediate"
+    },
+    {
+      "language": "Russian",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "Ukrainian",
+      "fluency": "Native speaker"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Python",
+      "level": "Strong",
+      "keywords": [
+        "Python 2.7",
+        "Python 3.x"
+      ]
+    },
+    {
+      "name": "Python frameworks",
+      "level": "Strong",
+      "keywords": [
+        "Django 1.4, 1.6-1.10, 2.x",
+        "Django REST framework",
+        "Flask",
+        "Starlette",
+        "Celery",
+        "SQLAlchemy"
+      ]
+    },
+    {
+      "name": "Testing",
+      "level": "Medium",
+      "keywords": [
+        "unittest",
+        "pytest",
+        "Selenium"
+      ]
+    },
+    {
+      "name": "DBs",
+      "level": "Medium",
+      "keywords": [
+        "MySQL",
+        "PostgreSQL",
+        "Redis",
+        "RethinkDB"
+      ]
+    },
+    {
+      "name": "MQs",
+      "level": "Medium",
+      "keywords": [
+        "RabbitMQ"
+      ]
+    },
+    {
+      "name": "RPC",
+      "level": "Medium",
+      "keywords": [
+        "gRPC",
+        "Protocol Buffers"
+      ]
+    },
+    {
+      "name": "DevOps",
+      "level": "Medium",
+      "keywords": [
+        "Linux (Ubuntu, Fedora)",
+        "MacOS X+",
+        "Docker"
+      ]
+    },
+    {
+      "name": "Integrations",
+      "level": "Medium",
+      "keywords": [
+        "Stripe",
+        "Phaxio",
+        "Mailgun",
+        "Pushy",
+        "PubNub"
+      ]
+    },
+    {
+      "name": "VCS",
+      "level": "Strong",
+      "keywords": [
+        "Git",
+        "Mercurial"
+      ]
+    },
+    {
+      "name": "Frontend",
+      "level": "Medium",
+      "keywords": [
+        "JavaScript including new ES features",
+        "React",
+        "Redux",
+        "Webpack",
+        "Gulp",
+        "jQuery",
+        "Bootstrap (2, 3, 4)",
+        "Skeleton",
+        "Foundation 6",
+        "SCSS",
+        "Less"
+      ]
+    }
+  ],
+  "work": [
+    {
+      "company": "Allset",
+      "position": "Python Software Engineer",
+      "website": "https://allsetnow.com/",
+      "startDate": "2018-11-12",
+      "endDate": "2020-12-11",
+      "summary": "Developing of the restaurant place and food preordering service. Implementing new features and integrations as well as refactoring existing code base, including migrating from python 2 to python 3.",
+      "highlights": [
+        "Python 2.x",
+        "Python 3.x",
+        "Migrating from python 2.x to python 3.x"
+      ]
+    },
+    {
+      "company": "GlobalLogic",
+      "position": "Python Full Stack Software Engineer",
+      "website": "https://www.globallogic.com/",
+      "startDate": "2017-07-01",
+      "endDate": "2018-08-01",
+      "summary": "Development of an AQA framework for one of the most known communication companies. Backend and frontend development of web-service for testing",
+      "highlights": [
+        "Python 2.7",
+        "Selenium",
+        "Django 2.0",
+        "Django REST Framework",
+        "React",
+        "Redux"
+      ]
+    },
+    {
+      "company": "Synergy Way",
+      "position": "Python Full Stack Software Engineer",
+      "website": "https://synergy-way.com/",
+      "startDate": "2016-08-01",
+      "endDate": "2017-07-01",
+      "summary": "Backend and frontend development of Arcus - the powerful Dispatch system",
+      "highlights": [
+        "Python 2.7",
+        "Raw SQL",
+        "memcached"
+      ]
+    },
+    {
+      "company": "N/A",
+      "position": "Python Full Stack Software Developer",
+      "website": null,
+      "startDate": "2014-08-01",
+      "endDate": "2016-07-01",
+      "summary": "Local startup of the e-commerce oriented social network based on python with Django",
+      "highlights": [
+        "Python 2.7",
+        "Django",
+        "PostgreSQL",
+        "jQuery"
+      ]
+    },
+    {
+      "company": "code.ua",
+      "position": "Python Full Stack Software Developer",
+      "website": "http://code.ua/",
+      "startDate": "2012-01-01",
+      "endDate": "2014-08-01",
+      "summary": "http://code.ua/",
+      "highlights": [
+        "Python 2.7",
+        "Django",
+        "PostgreSQL",
+        "jQuery"
+      ]
+    }
+  ]
+}
