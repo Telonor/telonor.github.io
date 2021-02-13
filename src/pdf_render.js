@@ -1,7 +1,5 @@
-import JsPDF from "jspdf/dist/jspdf.es.js";
-import cvData from "./cv_data";
-import {getAge} from "./utils";
-import React from "react";
+import JsPDF from 'jspdf/dist/jspdf.es.js';
+import { getAge, getDateBetweenStr, DBMY, DBY } from './utils';
 
 const ptToMM = 0.3528;
 const borderOffset = 15;
@@ -10,7 +8,8 @@ const linkColor = '#007bff';
 const textColor = '000000';
 const urlMarkdownPattern = /\[([\w ]+)\]\(([\w:/\-._]+)\)/g;
 const urlConfigPositionNotSet = -1;
-const fontName = "helvetica";
+const fontName = 'helvetica';
+
 
 class UrlConfig {
     constructor(text, url, xPosition=urlConfigPositionNotSet, yPosition=urlConfigPositionNotSet) {
@@ -22,10 +21,14 @@ class UrlConfig {
     }
 }
 
-export default class PDFRenderer {
-    constructor() {
+
+export default class PDFRender {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
         this.doc = JsPDF({lineHeight: 1.4});
         this._page = 0;
+        this._pageUserHeight = this.doc.getPageHeight() - 2 * borderOffset;
+        this._pageUserWidth = this.doc.getPageWidth - 2 * borderOffset;
         this._prevRowY = {
           0: 0,
         };
@@ -42,7 +45,9 @@ export default class PDFRenderer {
         this._renderTrainings();
         this._renderCodeSamples();
         this._renderAdditionalInfo();
-        this.doc.save(`${cvData['basic_info']['fio']}.pdf`);
+
+        const fileName = this.dataSource.basics['name'].replace(' ', '_')
+        this.doc.save(`${fileName}.pdf`);
     }
 
     _getLineInterval() {
@@ -212,6 +217,11 @@ export default class PDFRenderer {
     }
 
     _text(text, y, x=borderOffset) {
+        if (y >= this._pageUserHeight) {
+            this._addPage();
+            y = this._getNextRowY();
+        }
+
         // it's possible to get string or array of strings as input
         if (Object.prototype.toString.call(text) === '[object Array]' && text.length > 1) {
             this._setPrevRowY(y + this._getLineInterval() * (text.length -1));
@@ -235,6 +245,9 @@ export default class PDFRenderer {
 
     _getNextRowY(blank_lines=0) {
         // et least one blank line should be.
+        if (!this._prevRowY[this._page]) {
+            return borderOffset;
+        }
         return this._prevRowY[this._page] + this._getLineInterval() * (1 + blank_lines);
     }
 
@@ -255,41 +268,41 @@ export default class PDFRenderer {
     }
 
     _renderHeader() {
-        const basicInfo = cvData['basic_info'];
+        const basicInfo = this.dataSource.basics;
         this._setFontBold();
 
         this.doc.setFontSize(14);
-        this._centeredText(basicInfo['fio'], borderOffset);
+        this._centeredText(basicInfo['name'], this._getNextRowY());
 
         this.doc.setFontSize(12);
-        this._centeredText(basicInfo['position'], this._getNextRowY());
+        this._centeredText(basicInfo['label'], this._getNextRowY());
     }
 
     _renderBasicInfo() {
-        const basicInfo = cvData['basic_info'];
+        const basicInfo = this.dataSource.basics;
 
         this._setFontNormal();
         this.doc.setFontSize(11);
 
         this._text(`Age: ${getAge(basicInfo['bday'])}`, this._getNextRowY(1));
-        this._text(`City: ${basicInfo['city']}`, this._getNextRowY());
+        this._text(`City: ${basicInfo['location']['city']}`, this._getNextRowY());
         this._text(`Family status: ${basicInfo['family_status']}`, this._getNextRowY());
         this._text(`Email: ${basicInfo['email']}`, this._getNextRowY());
 
         let pageTitle = 'Web-page:';
         this._text(pageTitle, this._getNextRowY());
         this._textWithLink(
-            basicInfo['page'],
+            basicInfo['website'],
             this._prevRowY[this._page],
             borderOffset + this._getTextWidth(pageTitle) + this._getTextWidth(' '),
-            {url: basicInfo['page']}
+            {url: basicInfo['website']}
         );
 
         this._text(`Skype: ${basicInfo['skype']}`, this._getNextRowY());
     }
 
     _renderSkills() {
-        const skills = cvData['skills'];
+        const skills = this.dataSource.skills;
         const groupY = this._getNextRowY(1);
 
         this._setFontBold();
@@ -299,10 +312,10 @@ export default class PDFRenderer {
         // right column
 
         this._setFontNormal();
-        Object.keys(skills).forEach(
+        skills.forEach(
             (skillGroup, index) => {
                 const y = index ? this._getNextRowY(1) : groupY;
-                const groupTitle = `${skillGroup}: `;
+                const groupTitle = `${skillGroup['name']}: `;
 
                 // prepend with spaces of title length * needed space count
                 // calculate coefficient
@@ -314,7 +327,7 @@ export default class PDFRenderer {
                 const normalWidth = this.doc.getTextWidth(' ');
                 const spacesCount = boldWidth / normalWidth;
 
-                const groupSkillsString = `${' '.repeat(spacesCount)} ${skills[skillGroup].join(', ')}`;
+                const groupSkillsString = `${' '.repeat(spacesCount)} ${skillGroup['keywords'].join(', ')}`;
                 const splittedToSize = this.doc.splitTextToSize(
                     groupSkillsString,
                     this.doc.internal.pageSize.getWidth() - borderOffset - rightColumnX
@@ -340,8 +353,9 @@ export default class PDFRenderer {
     }
 
     _renderLanguages() {
-        const languages = cvData['languages'];
+        const languages = this.dataSource.languages;
         const groupY = this._getNextRowY(1);
+        let formattedLanguages = [];
 
         // left column
         this._setFontBold();
@@ -352,15 +366,22 @@ export default class PDFRenderer {
 
         // right column
         this._setFontNormal();
+
+
+        languages.forEach(
+            (language, index) => {
+                formattedLanguages.push(`${language['language']}: ${language['fluency']}`);
+            }
+        )
         this._text(
-            `${languages.join(', ')}`,
+            `${formattedLanguages.join(', ')}`,
             groupY,
             rightColumnX,
         )
     }
 
     _renderExperience() {
-        const experience = cvData['experience'];
+        const experience = this.dataSource.experience;
         const groupY = this._getNextRowY(1);
 
         // left column
@@ -373,17 +394,19 @@ export default class PDFRenderer {
         // right column
         experience.forEach(
             (exp, index) => {
+                const date = getDateBetweenStr(exp['startDate'], exp['endDate'], DBMY);
+
                 // date
                 this._setFontItalic();
                 this._rightAlignedText(
-                    exp['date'],
+                    date,
                     index ? this._getNextRowY() : groupY
                 );
 
                 // company
                 this._setFontBold();
                 this._text(
-                    exp['name'],
+                    exp['company'],
                     this._getNextRowY(),
                     rightColumnX
                 );
@@ -398,7 +421,7 @@ export default class PDFRenderer {
                 // description
                 this._setFontItalic();
                 this._renderLinkMarkdown(
-                    exp['description'],
+                    exp['summary'],
                     this._getNextRowY(),
                     rightColumnX,
                     this.doc.internal.pageSize.getWidth() - borderOffset - rightColumnX
@@ -409,7 +432,7 @@ export default class PDFRenderer {
     }
 
     _renderEducation() {
-        const education = cvData['education'];
+        const education = this.dataSource.education;
         const groupY = this._getNextRowY(1);
 
         // left column
@@ -422,18 +445,21 @@ export default class PDFRenderer {
         // right column
         education.forEach(
             (edu, index) => {
+                const date = getDateBetweenStr(edu['startDate'], edu['endDate'], DBY);
+                const title = `${edu['institution']}, ${edu['studyType']} degree of ${edu['area']}`;
+
                 this._setFontItalic();
                 this._rightAlignedText(
-                    edu['date'],
+                    date,
                     index ? this._getNextRowY() : groupY,
                 );
 
                 this._setFontNormal();
                 this._text(
-                    edu['name'],
+                    title,
                     this._getNextRowY(),
                     rightColumnX
-                )
+                );
             }
         );
 
@@ -441,7 +467,7 @@ export default class PDFRenderer {
     }
 
     _renderTrainings() {
-        const trainings = cvData['trainings'];
+        const trainings = this.dataSource.trainings;
         const groupY = this._getNextRowY(1);
 
         // left column
@@ -454,9 +480,11 @@ export default class PDFRenderer {
         // right column
         trainings.forEach(
             (trn, index) => {
+                const date = getDateBetweenStr(trn['startDate'], trn['endDate'], DBY);
+
                 this._setFontItalic();
                 this._rightAlignedText(
-                    trn['date'],
+                    date,
                     index ? this._getNextRowY() : groupY
                 );
 
@@ -491,12 +519,8 @@ export default class PDFRenderer {
     }
 
     _renderCodeSamples() {
-        // @TODO add auto .addPage if text will not fit current page end
-        this._addPage();
-
-        const codeSamples = cvData['code_samples'];
-        const groupY = borderOffset;
-
+        const groupY = this._getNextRowY(1);
+        const codeSamples = this.dataSource.codeSamples;
         // left column
         this._setFontBold();
         this._text(
@@ -520,7 +544,7 @@ export default class PDFRenderer {
     }
 
     _renderAdditionalInfo() {
-        const additional = cvData['additional'];
+        const additional = this.dataSource.basics['summary'];
         const groupY = this._getNextRowY(1);
 
         // left column

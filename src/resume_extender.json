@@ -2,7 +2,7 @@
   "basics": {
     "nickname": "Telonor",
     "bday": "1989-02-15",
-    "familyStatus": "Married",
+    "family_status": "Married",
     "skype": "Telonor"
   },
   "code_samples": [
@@ -20,23 +20,23 @@
       "name": "https://www.codewars.com",
       "url": "https://www.codewars.com/users/Telonor",
       "target": "Python",
-      "dateStart": "2017-05-01",
-      "dateEnd": null
+      "startDate": "2017-05-01",
+      "endDate": null
     },
     {
       "name": "https://htmlacademy.ru",
       "url": "https://htmlacademy.ru/profile/id178876",
       "target": "HTML5/CSS3/LESS",
-      "dateStart": "2016-01-01",
-      "dateEnd": null
+      "startDate": "2016-01-01",
+      "endDate": null
     },
     {
       "name": "https://www.codecademy.com",
       "url": "https://www.codecademy.com/Telonor",
       "target": "Python",
-      "dateStart": "2014-01-01",
-      "dateEnd": null
+      "startDate": "2014-01-01",
+      "endDate": null
     }
   ],
-  "additional": "Here are some of my accounts: [WoT](http://worldoftanks.ru/ru/community/accounts/98091-Telonor/), [WoW](https://worldofwarcraft.com/en-gb/character/eu/eversong/%D1%82%D0%B5%D0%BB%D0%BE%D0%BD%D0%BE%D1%80)"
+  "additional": "Here are some of my accounts: [WoT](http://worldoftanks.ru/ru/community/accounts/98091-Telonor/), [WoW](https://tinyurl.com/16c3fiji)"
 }
