@@ -141,6 +141,7 @@
         "JavaScript including new ES features",
         "React",
         "Redux",
+        "jspdf",
         "Webpack",
         "Gulp",
         "jQuery",

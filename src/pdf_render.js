@@ -46,6 +46,10 @@ export default class PDFRender {
         this._renderCodeSamples();
         this._renderAdditionalInfo();
 
+        this._save();
+    }
+
+    _save() {
         const fileName = this.dataSource.basics['name'].replace(' ', '_')
         this.doc.save(`${fileName}.pdf`);
     }
