@@ -1,76 +1,80 @@
-import cvData from './resume';
 import cvDataExt from './resume_extender';
 
-function getObjKey(keyName) {
-    let result = {};
-
-    if (cvData[keyName]){
-        result = {...cvData[keyName]};
-    }
-
-    if (cvDataExt[keyName]){
-        result = {...result, ...cvDataExt[keyName]};
-    }
-
-    return result;
-}
-
-function getArrayKey(keyName) {
-    let result = [];
-
-    if (cvData[keyName]){
-        result = result.concat(cvData[keyName]);
-    }
-
-    if (cvDataExt[keyName]){
-        result = result.concat(cvDataExt[keyName]);
-    }
-    return result;
-}
-
-function getBasics() {
-    let basics = getObjKey('basics');
-    const additional = cvDataExt['additional'];
-    const key = 'summary';
-
-    if (additional){
-        basics[key] = `${cvData['basics']['summary']}. ${cvDataExt['additional']}`;
-    }
-    return basics;
-}
-
-function getSkills() {
-    return getArrayKey('skills');
-}
-
-function getLanguages() {
-    return getArrayKey('languages');
-}
-
-function getExperience() {
-    return getArrayKey('work');
-}
-
-function getEducation() {
-    return getArrayKey('education');
-}
-
-function getTrainings() {
-    return getArrayKey('trainings');
-}
-
-function getCodeSamples() {
-    return getArrayKey('code_samples');
-}
 
 export default class DataSource {
-    constructor() {
-        this.basics = getBasics();
-        this.skills = getSkills();
-        this.languages = getLanguages();
-        this.experience = getExperience();
-        this.education = getEducation();
-        this.trainings = getTrainings();
-        this.codeSamples = getCodeSamples();
+    getObjKey(keyName) {
+        let result = {};
+
+        if (keyName in this.cvData && this.cvData[keyName]){
+            result = {...this.cvData[keyName]};
+        }
+
+        if (keyName in cvDataExt && cvDataExt[keyName]){
+            result = {...result, ...cvDataExt[keyName]};
+        }
+
+        return result;
+    }
+
+    getArrayKey(keyName) {
+        let result = [];
+
+        if (keyName in this.cvData && this.cvData[keyName]){
+            result = result.concat(this.cvData[keyName]);
+        }
+
+        if (keyName in cvDataExt && cvDataExt[keyName]){
+            result = result.concat(cvDataExt[keyName]);
+        }
+        return result;
+    }
+
+    getBasics() {
+        let basics = this.getObjKey('basics');
+        const additional = cvDataExt['additional'];
+        const key = 'summary';
+
+        if (Object.keys(this.cvData).length && additional){
+            basics[key] = `${this.cvData['basics']['summary']}. ${cvDataExt['additional']}`;
+        }
+        return basics;
+    }
+
+    getSkills() {
+        return this.getArrayKey('skills');
+    }
+
+    getLanguages() {
+        return this.getArrayKey('languages');
+    }
+
+    getExperience() {
+        return this.getArrayKey('work');
+    }
+
+    getEducation() {
+        return this.getArrayKey('education');
+    }
+
+    getTrainings() {
+        return this.getArrayKey('trainings');
+    }
+
+    getCodeSamples() {
+        return this.getArrayKey('code_samples');
+    }
+
+    constructor(cvData = {}) {
+        this.cvData = cvData;
+
+        this.isFilled = Boolean(Object.keys(cvData).length)
+
+        this.basics = this.getBasics();
+        this.skills = this.getSkills();
+        this.languages = this.getLanguages();
+        this.experience = this.getExperience();
+        this.education = this.getEducation();
+        this.trainings = this.getTrainings();
+        this.codeSamples = this.getCodeSamples();
     }
 }

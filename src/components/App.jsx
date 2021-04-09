@@ -16,22 +16,50 @@ import MainFooter from './MainFooter/main_footer';
 
 
 export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataSource: new DataSource()
+        }
+    }
+
+    getResumeData() {
+        const jsonUrl = 'https://api.github.com/gists/8e4bbe661c3e8ececbfe2ae86c39e9dd';
+
+        fetch(jsonUrl).then(
+            response => {
+                return response.json();
+            }
+        ).then(
+            data => {
+                const cvData = JSON.parse(data['files']['resume.json']['content']);
+                console.log(cvData);
+                 this.setState(
+                     {dataSource: new DataSource(cvData)}
+                 )
+            }
+        )
+    }
+
+    componentDidMount() {
+        this.getResumeData()
+    }
+
     render() {
-        const dataSource = new DataSource();
         return (
             <div className="container">
-                <Header dataSource={dataSource}/>
+                <Header dataSource={this.state.dataSource}/>
                 <main className="terminal terminal-body">
-                    <MainHeader dataSource={dataSource}/>
-                    <MainInfo dataSource={dataSource}/>
-                    <Skills dataSource={dataSource}/>
-                    <Languages dataSource={dataSource}/>
-                    <Experience dataSource={dataSource}/>
-                    <Education dataSource={dataSource}/>
-                    <Trainings dataSource={dataSource}/>
-                    <CodeSamples dataSource={dataSource}/>
-                    <Additional dataSource={dataSource}/>
-                    <MainFooter dataSource={dataSource}/>
+                    <MainHeader dataSource={this.state.dataSource}/>
+                    {/*<MainInfo dataSource={this.state.dataSource}/>*/}
+                {/*    <Skills dataSource={dataSource}/>*/}
+                {/*    <Languages dataSource={dataSource}/>*/}
+                {/*    <Experience dataSource={dataSource}/>*/}
+                {/*    <Education dataSource={dataSource}/>*/}
+                {/*    <Trainings dataSource={dataSource}/>*/}
+                {/*    <CodeSamples dataSource={dataSource}/>*/}
+                {/*    <Additional dataSource={dataSource}/>*/}
+                    <MainFooter dataSource={this.state.dataSource}/>
                 </main>
             </div>
         )

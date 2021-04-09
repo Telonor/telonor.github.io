@@ -2,7 +2,6 @@
   "basics": {
     "name": "Anton Viievskyi",
     "label": "Software Engineer",
-    "picture": null,
     "email": "viievskyi.anton@gmail.com",
     "phone": "+380976772383",
     "website": "telonor.github.io",
@@ -20,7 +19,6 @@
       "studyType": "Master",
       "startDate": "2010-09-01",
       "endDate": "2011-07-01",
-      "gpa": null,
       "courses": [
         "In-depth study of foreign language (English)"
       ]
@@ -31,7 +29,6 @@
       "studyType": "Bachelor",
       "startDate": "2006-09-01",
       "endDate": "2010-07-01",
-      "gpa": null,
       "courses": [
         "In-depth study of foreign language (English)"
       ]
@@ -160,7 +157,7 @@
       "website": "https://allsetnow.com/",
       "startDate": "2018-11-12",
       "endDate": "2020-12-11",
-      "summary": "Developing of the restaurant place and food preordering service. Implementing new features and integrations as well as refactoring existing code base, including migrating from python 2 to python 3.",
+      "summary": "Developing of the restaurant place and food pre-ordering service. Implementing new features and integrations as well as refactoring existing code base, including migrating from python 2 to python 3.",
       "highlights": [
         "Python 2.x",
         "Python 3.x",
@@ -199,7 +196,6 @@
     {
       "company": "N/A",
       "position": "Python Full Stack Software Developer",
-      "website": null,
       "startDate": "2014-08-01",
       "endDate": "2016-07-01",
       "summary": "Local startup of the e-commerce oriented social network based on python with Django",
