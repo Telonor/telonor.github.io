@@ -4,8 +4,11 @@ import SkillGroup from '../SkillGroup/skill_group';
 
 export default class Skills extends Component {
     render() {
-        const skills = this.props.dataSource.skills;
+        if (!this.props.dataSource.isFilled) {
+            return null;
+        }
 
+        const skills = this.props.dataSource.skills;
         return (
             <figure>
                 <div className='row'>

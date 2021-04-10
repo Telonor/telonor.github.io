@@ -4,6 +4,10 @@ import Language from '../Language/language';
 
 export default class Languages extends Component {
     render() {
+        if (!this.props.dataSource.isFilled) {
+            return null;
+        }
+
         return (
             <figure>
                 <div className='row'>

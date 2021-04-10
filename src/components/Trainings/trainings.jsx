@@ -4,6 +4,10 @@ import TrainingItem from '../TrainingItem/training_item';
 
 export default class Trainings extends Component {
     render() {
+        if (!this.props.dataSource.isFilled) {
+            return null;
+        }
+
         return (
             <figure>
                 <div className='row'>

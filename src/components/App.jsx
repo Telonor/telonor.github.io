@@ -51,14 +51,14 @@ export default class App extends Component {
                 <Header dataSource={this.state.dataSource}/>
                 <main className="terminal terminal-body">
                     <MainHeader dataSource={this.state.dataSource}/>
-                    {/*<MainInfo dataSource={this.state.dataSource}/>*/}
-                {/*    <Skills dataSource={dataSource}/>*/}
-                {/*    <Languages dataSource={dataSource}/>*/}
-                {/*    <Experience dataSource={dataSource}/>*/}
-                {/*    <Education dataSource={dataSource}/>*/}
-                {/*    <Trainings dataSource={dataSource}/>*/}
-                {/*    <CodeSamples dataSource={dataSource}/>*/}
-                {/*    <Additional dataSource={dataSource}/>*/}
+                    <MainInfo dataSource={this.state.dataSource}/>
+                    <Skills dataSource={this.state.dataSource}/>
+                    <Languages dataSource={this.state.dataSource}/>
+                    <Experience dataSource={this.state.dataSource}/>
+                    <Education dataSource={this.state.dataSource}/>
+                    <Trainings dataSource={this.state.dataSource}/>
+                    <CodeSamples dataSource={this.state.dataSource}/>
+                    <Additional dataSource={this.state.dataSource}/>
                     <MainFooter dataSource={this.state.dataSource}/>
                 </main>
             </div>

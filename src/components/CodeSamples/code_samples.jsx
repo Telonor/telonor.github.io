@@ -4,6 +4,10 @@ import CodeSample from '../CodeSample/code_sample';
 
 export default class CodeSamples extends Component {
     render() {
+        if (!this.props.dataSource.isFilled) {
+            return null;
+        }
+
         return (
             <figure>
                 <div className='row'>

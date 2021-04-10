@@ -6,6 +6,10 @@ import './experience.css';
 
 export default class Experience extends Component {
     render() {
+        if (!this.props.dataSource.isFilled) {
+            return null;
+        }
+
         return (
             <figure className='experience-block'>
                 <div className='row'>

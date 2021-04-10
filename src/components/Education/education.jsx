@@ -4,6 +4,10 @@ import EducationItem from '../EducationItem/education_item';
 
 export default class Education extends Component {
     render() {
+        if (!this.props.dataSource.isFilled) {
+            return null;
+        }
+
         return (
             <figure>
                 <div className='row'>

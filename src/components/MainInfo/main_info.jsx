@@ -4,8 +4,11 @@ import { getAge } from '../../utils';
 
 export default class MainInfo extends Component {
     render() {
-        const basicInfo = this.props.dataSource.basics;
+        if (!this.props.dataSource.isFilled) {
+            return null;
+        }
 
+        const basicInfo = this.props.dataSource.basics;
         return (
             <figure>
                 <div className='row'>
