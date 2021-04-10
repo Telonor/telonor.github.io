@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { getDateBetweenStr, DBMY } from '../../utils';
+import ExperienceItemHighlights from '../ExperienceItemHighlights/experience_item_highlights';
 
 import './experience_item.css';
 
@@ -21,6 +22,7 @@ export default class ExperienceItem extends Component {
                 <div className='col-12 col-sm-9 offset-sm-3 col-xl-10 offset-xl-2 description'>
                     <ReactMarkdown source={this.props.exp['summary']}/>
                 </div>
+                <ExperienceItemHighlights exp={this.props.exp}/>
             </div>
         )
     }

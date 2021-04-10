@@ -5,7 +5,7 @@ const ptToMM = 0.3528;
 const borderOffset = 15;
 const rightColumnX = 60;
 const linkColor = '#007bff';
-const textColor = '000000';
+const textColor = '#000000';
 const urlMarkdownPattern = /\[([\w ]+)\]\(([\w:/\-._]+)\)/g;
 const urlConfigPositionNotSet = -1;
 const fontName = 'helvetica';
@@ -430,6 +430,20 @@ export default class PDFRender {
                     rightColumnX,
                     this.doc.internal.pageSize.getWidth() - borderOffset - rightColumnX
                 )
+
+                if ('highlights' in exp) {
+                    this._setFontNormal();
+
+                    exp['highlights'].forEach(
+                        (highlight, idx) => {
+                            this._text(
+                                highlight,
+                                this._getNextRowY(idx ? 0 : 1),
+                                rightColumnX,
+                            )
+                        }
+                    )
+                }
             }
         );
 
