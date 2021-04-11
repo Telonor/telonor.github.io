@@ -9,7 +9,7 @@ export default class MainFooter extends React.Component {
         return (
             <figure className='main-footer'>
                 <div className='row'>
-                    <div className='col terminal-caret'>{basicInfo['nickname']}@localhost ~]$</div>
+                    <div className='col terminal-caret'>[{basicInfo['nickname']}@localhost ~]$</div>
                 </div>
             </figure>
         )
