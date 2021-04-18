@@ -33,10 +33,9 @@ export default class App extends Component {
         ).then(
             data => {
                 const cvData = JSON.parse(data['files']['resume.json']['content']);
-                console.log(cvData);
-                 this.setState(
-                     {dataSource: new DataSource(cvData)}
-                 )
+                this.setState(
+                    {dataSource: new DataSource(cvData)}
+                )
             }
         )
     }

@@ -478,6 +478,20 @@ export default class PDFRender {
                     this._getNextRowY(),
                     rightColumnX
                 );
+
+                if ('courses' in edu) {
+                    this._setFontNormal();
+
+                    edu['courses'].forEach(
+                        course => {
+                            this._text(
+                                course,
+                                this._getNextRowY(),
+                                rightColumnX,
+                            )
+                        }
+                    )
+                }
             }
         );
 
